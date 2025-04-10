@@ -1,48 +1,46 @@
-<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-    <head>
-        <script>
-        function timestamp() { var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500); 
-        </script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Web-to-Lead</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const propietarioValue = urlParams.get('propietario');
+        if (propietarioValue) {
+            document.getElementById('propietario').value = propietarioValue;
+        }
+    });
+  </script>
+</head>
+<body>
+  <h2>Formulario de prueba Web-to-Lead</h2>
 
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Obtener el parámetro "propietario" de la URL
-                const urlParams = new URLSearchParams(window.location.search);
-                const propietarioValue = urlParams.get('propietario');
-
-                // Asignar el valor al campo propietario__c si existe
-                if (propietarioValue) {
-                    document.getElementById('propietario').value = propietarioValue;
-                }
-            });
-        </script>
-    </head>
-
-    <body>
-        <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DWC000004EiWn" method="POST">
-        
-        <input type=hidden name='captcha_settings' value='{"keyname":"Prueba","fallback":"true","orgId":"00DWC000004EiWn","ts":""}'>
-        <input type=hidden name="oid" value="00DWC000004EiWn">
-        <input type=hidden name="retURL" value="http://">
-        
-        
-        <label for="first_name">Nombre</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
-        
-        <label for="last_name">Apellidos</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
-        
-        <label for="email">Correo electrónico</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-
-        <input  id="propietario" maxlength="20" name="CMVI_Propietario__c" size="20" type="text" style="display: none;" /><br>
-        
-        <label for="company">Compañía</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
-        
-        <label for="city">Ciudad</label><input  id="city" maxlength="40" name="city" size="20" type="text" /><br>
-        
-        <label for="state">Estado/Provincia</label><input  id="state" maxlength="20" name="state" size="20" type="text" /><br>
-        
-        <div class="g-recaptcha" data-sitekey="6LeH2bspAAAAAJ1NHD_sVZHyNnTT-ly75nLMGAUg"></div><br>
-        <input type="submit" name="submit">
-        
-        </form>
-    </body>
+  <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
     
+    <!-- OrgId de tu Sandbox -->
+    <input type="hidden" name="oid" value="00DWC000004EiWn">
+    
+    <!-- URL de retorno -->
+    <input type="hidden" name="retURL" value="https://tusitio.com/gracias">
+
+    <!-- Campos requeridos -->
+    <label>Nombre:</label><br>
+    <input type="text" name="first_name" /><br><br>
+
+    <label>Apellido:</label><br>
+    <input type="text" name="last_name" /><br><br>
+
+    <label>Correo:</label><br>
+    <input type="email" name="email" /><br><br>
+
+    <label>Compañía:</label><br>
+    <input type="text" name="company" /><br><br>
+
+    <!-- Campo personalizado oculto -->
+    <input type="hidden" id="propietario" name="CMVI_Propietario__c" />
+
+    <input type="submit" value="Enviar">
+  </form>
+</body>
+</html>
