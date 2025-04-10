@@ -8,11 +8,11 @@
             document.addEventListener("DOMContentLoaded", function () {
                 // Obtener el parámetro "propietario" de la URL
                 const urlParams = new URLSearchParams(window.location.search);
-                const propietarioValue = urlParams.get('CMVI Propietario');
+                const propietarioValue = urlParams.get('propietario');
 
                 // Asignar el valor al campo propietario__c si existe
                 if (propietarioValue) {
-                    document.getElementById('CMVI Propietario').value = propietarioValue;
+                    document.getElementById('propietario').value = propietarioValue;
                 }
             });
         </script>
@@ -32,7 +32,7 @@
         
         <label for="email">Correo electrónico</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
 
-        <input  id="CMVI Propietario" maxlength="20" name="CMVI_Propietario__c" size="20" type="text" style="display: none;" /><br>
+        <input  id="propietario" maxlength="20" name="CMVI_Propietario__c" size="20" type="text" style="display: none;" /><br>
         
         <label for="company">Compañía</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
         
